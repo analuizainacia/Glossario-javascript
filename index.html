@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-100">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Meu Dicionário Javascript">
+    <meta name="author" content="Ana luiza">
+    <meta name="keywords" content="html, css, web, desenvolvimento, front-end">
+    <title>Meu Dicionário Javascript</title>
+    <link rel="stylesheet" href="css">
+    
+</head>
+
+<body>
+    <div class="container"> 
+        <div class="centered-container">
+            <img class="center-content" src="Atv Montanha.jpg" width="300" alt="imagem do google" title="Meu Dicionário Javascript">
+        </div>
+        <div>
+            <h1>Bem-vindo(a) ao Meu Dicionário Javascript!</h1>
+            
+            <p>Selecione um termo abaixo:</p>
+            <select title="Tópicos" id="slc-topicos">
+            </select>
+            <p>Descrição:</p>
+            <label for="description" id="lbl-txt-desc"></label>
+            <textarea id="txt-desc" name="description" title="Descrição" placeholder="" rows="12" wrap="soft"></textarea>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        
+        var jsonData = [
+            {
+                "id": 1,
+                "titulo": "O que é JavaScript",
+                "descricao": "JavaScript é uma linguagem de programação que permite implementar funcionalidades mais complexas em páginas web. Desde o momento em que a página web é exibida no navegador, JavaScript é usado para tornar a página mais responsiva, interativa e dinâmica."
+            },
+            {
+                "id": 2,
+                "titulo": "Statement 'for'",
+                "descricao": "O statement 'for' cria um loop que consiste em três expressões opcionais, dentro de parênteses e separadas por ponto e vírgula, seguidas por uma declaração ou uma sequência de declarações executadas em sequência."
+            },
+            {
+                "id": 3,
+                "titulo": "Funções em JavaScript",
+                "descricao": "Uma função em JavaScript é um bloco de código projetado para realizar uma tarefa específica. Uma função é executada quando 'algo' a invoca (chama)."
+            },
+            {
+                "id": 4,
+                "titulo": "Objetos em JavaScript",
+                "descricao": "JavaScript é uma linguagem baseada em objetos. Um objeto é uma coleção de propriedades, e uma propriedade é uma associação entre um nome (ou chave) e um valor."
+            }
+        ];
+
+        
+        $(document).ready(function() {
+            var selectBox = $('#slc-topicos');
+            
+            
+            $.each(jsonData, function(index, item) {
+                selectBox.append('<option value="' + item.id + '">' + item.titulo + '</option>');
+            });
+        });
+
+        
+        $('#slc-topicos').change(function() {
+            var selecionado = $(this).val();
+            var descricao = $('#txt-desc');
+            
+            
+            var itemSelecionado = jsonData.find(function(item) {
+                return item.id == selecionado;
+            });
+           
+            descricao.val(itemSelecionado.descricao);
+        });
+    </script>
+</body>
+</html>
